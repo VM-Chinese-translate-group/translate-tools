@@ -1,0 +1,2 @@
+sv-ttk
+aiohttp

@@ -1,0 +1,7 @@
+**/*.exe
+**/__pycache__
+**/.idea
+**/.vscode
+**/dist
+**/zh_cn.json
+**/build

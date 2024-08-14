@@ -24,11 +24,11 @@ void check_line_for_errors(const string& line, int line_number, const string& ke
     while (pos != string::npos) {
         if (pos + 1 < line.length() && !is_valid_char(line[pos + 1])) {
             if (verbose) {
-                cerr << "错误: 在第 " << line_number << " 行，在 '&' 后面发现无效字符" << endl;
-                cerr << "键: " << key << endl;
-                cerr << "值: " << value << endl;
+                cerr << "错误：在第 " << line_number << " 行，在 '&' 后面发现无效字符" << endl;
+                cerr << "键：" << key << endl;
+                cerr << "值：" << value << endl;
             } else {
-                cerr << "错误: 在第 " << line_number << " 行发现无效字符" << endl;
+                cerr << "错误：在第 " << line_number << " 行，在 '&' 后面发现无效字符" << endl;
             }
             has_errors = true;
         }
@@ -39,7 +39,7 @@ void check_line_for_errors(const string& line, int line_number, const string& ke
 void check_json(const string& file_path, bool verbose) {
     ifstream file(file_path);
     if (!file) {
-        cerr << "无法打开文件: " << file_path << endl;
+        cerr << "无法打开文件：" << file_path << endl;
         return;
     }
 
@@ -71,7 +71,7 @@ int main() {
     string file_path;
     bool verbose = false;
 
-    cout << "请输入 JSON 文件路径: ";
+    cout << "请输入 JSON 文件路径：";
     cin >> file_path;
 
     cout << "是否显示包含键名与内容的详细错误信息？(y/n): ";
@@ -82,7 +82,7 @@ int main() {
     check_json(file_path, verbose);
 
     // 等待用户输入后关闭
-    cout << "按任意键退出...";
+    cout << "按任意键退出……";
     cin.ignore();
     cin.get();
 
