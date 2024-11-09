@@ -12,8 +12,8 @@ import sv_ttk
 
 class ParatranzUploader:
     CONFIG_FILE = "config.json"
-    DEFAULT_TOKEN = "your token"
-    DEFAULT_VERSION = "1.5.0"
+    DEFAULT_TOKEN = "在https://paratranz.cn/users/my 点击设置获取"
+    DEFAULT_VERSION = "1.6.0"
 
     def __init__(self, root: Tk) -> None:
         self.root = root
@@ -32,7 +32,7 @@ class ParatranzUploader:
         if len(self.token) != 32:
             messagebox.showwarning(
                 "警告",
-                "当前未设置token，无法使用程序功能。请打开config.json输入您的token。",
+                "当前未设置token，无法使用。\n请在https://paratranz.cn/users/my 点击设置获取并在config.json输入",
             )
             os.startfile("config.json")
 
@@ -80,7 +80,7 @@ class ParatranzUploader:
         }
         for label, (row, method) in entries.items():
             Label(self.root, text=label, font=("黑体", 12)).grid(
-                row=row, column=0, padx=10, pady=10, sticky="w"
+                row=row, column=0, padx=30, pady=10, sticky="w"
             )
             method(row)
 
@@ -250,7 +250,7 @@ class ParatranzUploader:
         self.root.update()
 
     def update_info(self) -> None:
-        update_content = "1. 公开发布，代码整理。\n2. 删除更新检测。"
+        update_content = "1. 代码整理。\n2. 配置文件添加token获取引导。"
         self.update_label.config(text=f"更新内容：\n{update_content}")
 
 

@@ -25,7 +25,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='Paratranz Sync - 1.5.0',
+    name='Paratranz Sync - 1.6.0',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

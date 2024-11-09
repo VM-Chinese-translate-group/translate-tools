@@ -65,7 +65,7 @@ def check_directory(directory_path: str, verbose: bool) -> list[str]:
             relative_file_path = os.path.relpath(file_path, start=directory_path)
             errors.extend(check_json_file(file_path, relative_file_path, verbose))
     if not found_json:
-        print(Fore.YELLOW + f"目录 '{directory_path}' 中没有找到任何 JSON 文件。")
+        print(Fore.YELLOW + f"目录 '{directory_path}' 中没有找到任何 JSON 文件")
     return errors
 
 
@@ -76,6 +76,10 @@ def save_errors_to_file(errors: list[str]) -> None:
 
 
 def main() -> None:
+    print(
+        Fore.YELLOW
+        + "FTB任务颜色字符合法检查 [版本 1.1 (2024)]\n作者：Wulian233（捂脸）\n"
+    )
     path = input("请输入 JSON 文件或目录路径：").strip()
     verbose = input("是否显示详细错误信息？(y/n): ").strip().lower() == "y"
 
