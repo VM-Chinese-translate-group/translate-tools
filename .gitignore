@@ -3,5 +3,6 @@
 **/.idea
 **/.vscode
 **/dist
-**/zh_cn.json
+**/*.json
 **/build
+**/error_report.txt
