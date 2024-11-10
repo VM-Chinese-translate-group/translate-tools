@@ -12,7 +12,7 @@ import sv_ttk
 
 class ParatranzUploader:
     CONFIG_FILE = "config.json"
-    DEFAULT_TOKEN = "在https://paratranz.cn/users/my 点击设置获取"
+    DEFAULT_TOKEN = "go to https://paratranz.cn/users/my"
     DEFAULT_VERSION = "1.6.0"
 
     def __init__(self, root: Tk) -> None:
