@@ -1,10 +1,10 @@
 import asyncio
 import json
-import sys
-import re
 import os
-from tkinter import filedialog, Tk, END, messagebox
-from tkinter.ttk import Label, Entry, Button, Checkbutton, Progressbar
+import re
+import sys
+from tkinter import END, Tk, filedialog, messagebox
+from tkinter.ttk import Button, Checkbutton, Entry, Label, Progressbar
 
 import aiohttp
 import sv_ttk
@@ -268,6 +268,7 @@ def main() -> None:
     ParatranzUploader(root)
 
     import base64
+
     from icon import img
 
     with open("window_icon.ico", "wb+") as icon:

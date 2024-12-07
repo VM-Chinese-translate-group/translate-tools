@@ -11,16 +11,16 @@ def check_line_for_errors(
     line: str, line_number: int, verbose: bool, relative_file_path: str
 ) -> list[str]:
     errors = []
-    matches = re.finditer(r"&([^a-zA-Z1-9\s])", line)
+    matches = re.finditer(r"&([^a-v0-9\s])", line)
     for match in matches:
-        error_message = f"SyntaxError: Invalid character '{match.group(1)}' after '&' at line {line_number}\n    {line}"
+        error_message = f"SyntaxError{Fore.RESET}: {Fore.RED}Invalid character '{match.group(1)}' after '&' at line {line_number}\n    {line}"
         if verbose:
             print(f"[{relative_file_path}] {Fore.RED}{error_message}")
         else:
             print(
-                f"[{relative_file_path}] {Fore.RED}SyntaxError: Invalid character after '&' at line {line_number}"
+                f"[{relative_file_path}] SyntaxError{Fore.RESET}: {Fore.RED}Invalid character after '&' at line {line_number}"
             )
-        errors.append(f"[{relative_file_path}] {error_message}")
+        errors.append(f"[{relative_file_path}] {Fore.RED}{error_message}")
     return errors
 
 
@@ -77,8 +77,17 @@ def save_errors_to_file(errors: list[str]) -> None:
 
 def main() -> None:
     print(
-        Fore.YELLOW
-        + "FTB任务颜色字符合法检查 [版本 1.1 (2024)]\n作者：Wulian233（捂脸）\n"
+        Fore.BLUE
+        + "FTB任务颜色字符合法检查 [版本 1.2 (2024)]\n作者：Wulian233（捂脸）\n\n"
+        + Fore.RESET
+        + """VM之禅：
+    一，即使翻译难易各异，译者应持己见自立。
+    二，即使遇到词句争议，组员务必同心共力。
+    三，即使译途坎坷跌宕，仍应坚守质量保障。
+    四，即使成果乏人褒奖，仍不计事后短长。
+    五，即使面临质疑声浪，仍要对正道守望。
+    六，即使译句纷乱无章，仍应看向前方、重塑文章。
+        """
     )
     path = input("请输入 JSON 文件或目录路径：").strip()
     verbose = input("是否显示详细错误信息？(y/n): ").strip().lower() == "y"
@@ -90,13 +99,13 @@ def main() -> None:
             path, os.path.relpath(path, start=os.path.dirname(path)), verbose
         )
     else:
-        print(Fore.RED + "输入的路径无效，请输入有效的 JSON 文件路径或目录。")
+        print(f"❌ {Fore.RED}输入的路径无效，请输入有效的 JSON 文件路径或目录。")
         return
 
     if errors:
         save_errors_to_file(errors)
     else:
-        print(Fore.GREEN + "文件检查通过，没有发现错误。")
+        print(f"✅ {Fore.GREEN}文件检查通过，没有发现错误。")
 
     input("按任意键（关机键除外）退出...")
 

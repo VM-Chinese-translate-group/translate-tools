@@ -1,8 +1,9 @@
-**/*.exe
 **/__pycache__
 **/.idea
 **/.vscode
+**/build
 **/dist
 **/*.json
-**/build
 **/error_report.txt
+**/*.exe
+/*.spec
