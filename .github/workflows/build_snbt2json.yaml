@@ -1,9 +1,9 @@
-name: Build FTBQ Color Check and Upload
+name: Build snbt to json and upload
 
 on:
   push:
     paths:
-      - 'ftbq_color_check/**'
+      - 'snbt2json/**'
   workflow_dispatch:
 
 jobs:
@@ -21,16 +21,16 @@ jobs:
       - name: Install dependencies (Windows)
         run: |
           pip install pyinstaller
-          pip install -r ftbq_color_check/requirements.txt
+          pip install -r snbt2json/requirements.txt
 
       - name: Build with PyInstaller (Windows)
         run: |
-          python -m PyInstaller -F -n FTBQ-Color-Check-Windows ftbq_color_check/main.py
+          python -m PyInstaller -F -n snbt-to-json-Windows snbt2json/main.py
 
       - name: Upload (Windows)
         uses: actions/upload-artifact@v4
         with:
-          path: dist/FTBQ-Color-Check-Windows.exe
+          path: dist/snbt-to-json-Windows.exe
 
   build-macos:
     runs-on: macos-latest
@@ -46,17 +46,17 @@ jobs:
       - name: Install dependencies (macOS)
         run: |
           pip install pyinstaller
-          pip install -r ftbq_color_check/requirements.txt
+          pip install -r snbt2json/requirements.txt
         
       - name: Build with PyInstaller (macOS)
         run: |
-          python -m PyInstaller -F -n FTBQ-Color-Check-macOS ftbq_color_check/main.py
+          python -m PyInstaller -F -n snbt-to-json-macOS snbt2json/main.py
 
       - name: Upload (macOS)
         uses: actions/upload-artifact@v4
         with:
-          name: FTBQ-Color-Check-macOS
-          path: dist/FTBQ-Color-Check-macOS
+          name: snbt-to-json-macOS
+          path: dist/snbt-to-json-macOS
 
   build-linux:
     runs-on: ubuntu-latest
@@ -72,14 +72,14 @@ jobs:
       - name: Install dependencies (Linux)
         run: |
           pip install pyinstaller
-          pip install -r ftbq_color_check/requirements.txt
+          pip install -r snbt2json/requirements.txt
 
       - name: Build with PyInstaller (Linux)
         run: |
-          python -m PyInstaller -F -n FTBQ-Color-Check-Linux ftbq_color_check/main.py
+          python -m PyInstaller -F -n snbt-to-json-Linux snbt2json/main.py
 
       - name: Upload (Linux)
         uses: actions/upload-artifact@v4
         with:
-          name: FTBQ-Color-Check-Linux
-          path: dist/FTBQ-Color-Check-Linux
+          name: snbt-to-json-Linux
+          path: dist/snbt-to-json-Linux

@@ -69,16 +69,21 @@ def check_directory(directory_path: str, verbose: bool) -> list[str]:
     return errors
 
 
+def remove_color_codes(text: str) -> str:
+    # 去除所有 ANSI 转义字符
+    return re.sub(r'\x1b\[[0-9;]*m', '', text)
+
 def save_errors_to_file(errors: list[str]) -> None:
     with open("error_report.txt", "w", encoding="utf-8") as f:
-        f.write("\n".join(errors))
+        cleaned_errors = [remove_color_codes(error) for error in errors]
+        f.write("\n".join(cleaned_errors))
     print("错误信息已保存到 error_report.txt")
 
 
 def main() -> None:
     print(
-        Fore.BLUE
-        + "FTB任务颜色字符合法检查 [版本 1.2 (2024)]\n作者：Wulian233（捂脸）\n\n"
+        Fore.LIGHTGREEN_EX
+        + "FTB任务颜色字符合法检查 [版本 1.3 (2024)]\n作者：Wulian233（捂脸）\n\n"
         + Fore.RESET
         + """VM之禅：
     一，即使翻译难易各异，译者应持己见自立。
@@ -99,13 +104,13 @@ def main() -> None:
             path, os.path.relpath(path, start=os.path.dirname(path)), verbose
         )
     else:
-        print(f"❌ {Fore.RED}输入的路径无效，请输入有效的 JSON 文件路径或目录。")
+        print(f"{Fore.RED}输入的路径无效，请输入有效的 JSON 文件路径或目录。")
         return
 
     if errors:
         save_errors_to_file(errors)
     else:
-        print(f"✅ {Fore.GREEN}文件检查通过，没有发现错误。")
+        print(f"{Fore.GREEN}文件检查通过，没有发现错误。")
 
     input("按任意键（关机键除外）退出...")
 
