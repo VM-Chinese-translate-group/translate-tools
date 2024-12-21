@@ -1,9 +1,9 @@
-name: Build snbt to json and upload
+name: Build snbt json converter and upload
 
 on:
   push:
     paths:
-      - 'snbt2json/**'
+      - 'snbt_json_converter/**'
   workflow_dispatch:
 
 jobs:
@@ -21,16 +21,16 @@ jobs:
       - name: Install dependencies (Windows)
         run: |
           pip install pyinstaller
-          pip install -r snbt2json/requirements.txt
+          pip install -r snbt_json_converter/requirements.txt
 
       - name: Build with PyInstaller (Windows)
         run: |
-          python -m PyInstaller -F -n snbt-to-json-Windows snbt2json/main.py
+          python -m PyInstaller -F -n snbt-json-converter-Windows snbt_json_converter/main.py
 
       - name: Upload (Windows)
         uses: actions/upload-artifact@v4
         with:
-          path: dist/snbt-to-json-Windows.exe
+          path: dist/snbt-json-converter-Windows.exe
 
   build-macos:
     runs-on: macos-latest
@@ -46,17 +46,17 @@ jobs:
       - name: Install dependencies (macOS)
         run: |
           pip install pyinstaller
-          pip install -r snbt2json/requirements.txt
+          pip install -r snbt_json_converter/requirements.txt
         
       - name: Build with PyInstaller (macOS)
         run: |
-          python -m PyInstaller -F -n snbt-to-json-macOS snbt2json/main.py
+          python -m PyInstaller -F -n snbt-json-converter-macOS snbt_json_converter/main.py
 
       - name: Upload (macOS)
         uses: actions/upload-artifact@v4
         with:
-          name: snbt-to-json-macOS
-          path: dist/snbt-to-json-macOS
+          name: snbt-json-converter-macOS
+          path: dist/snbt-json-converter-macOS
 
   build-linux:
     runs-on: ubuntu-latest
@@ -72,14 +72,14 @@ jobs:
       - name: Install dependencies (Linux)
         run: |
           pip install pyinstaller
-          pip install -r snbt2json/requirements.txt
+          pip install -r snbt_json_converter/requirements.txt
 
       - name: Build with PyInstaller (Linux)
         run: |
-          python -m PyInstaller -F -n snbt-to-json-Linux snbt2json/main.py
+          python -m PyInstaller -F -n snbt-json-converter-Linux snbt_json_converter/main.py
 
       - name: Upload (Linux)
         uses: actions/upload-artifact@v4
         with:
-          name: snbt-to-json-Linux
-          path: dist/snbt-to-json-Linux
+          name: snbt-json-converter-Linux
+          path: dist/snbt-json-converter-Linux

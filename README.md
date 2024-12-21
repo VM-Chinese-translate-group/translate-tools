@@ -42,15 +42,16 @@
 
 使用相关功能需要有Paratranz的项目id和有对应权限用户的token，可在Paratranz个人主页查看。
 
-## snbt 转 json 工具
+## snbt json 互转工具
 
-用于将FTB任务中的snbt文件转换为json。对于FTB任务在mc1.21+新加入的语言文件，转换后的json可直接在翻译平台导入进行翻译。
+用于将FTB任务在mc1.21+新加入的snbt语言文件文件与json格式互转，便于导入翻译平台进行翻译。
 
-输入一个snbt文件路径或目录，会转换所有snbt文件为json
+输入一个文件路径或目录，会按照选择的模式转换所有文件
 
 - 支持彩色提示信息
 - 支持将语言文件导入翻译平台
-- 支持转换单个或整个目录的snbt文件
+- 支持转换单个或整个目录的文件
+- 支持 snbt json 互转
 
 ## 下载
 
@@ -76,11 +77,11 @@ Paratranz译文同步工具：
     python -m PyInstaller paratranz_sync/main.spec
 ```
 
-snbt 转 json 工具：
+snbt json 互转工具：
 ```bash
     pip install pyinstaller
-    pip install -r snbt2json/requirements.txt
-    python -m PyInstaller -F -n snbt-to-json snbt2json/main.py
+    pip install -r snbt_json_converter/requirements.txt
+    python -m PyInstaller -F -n snbt-json-converter snbt_json_converter/main.py
 ```
 
 ## 星标
