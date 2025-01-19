@@ -15,26 +15,17 @@
 输入一个json文件路径或目录，会检查所有json文件内的颜色字符是否合法。
 
 - 支持彩色提示信息。报错为红色，通过为绿色
-- 新增支持导出错误报告为txt
-- 可选是否在控制台打印详细信息
-1. 开启会在控制台显示具体译文内容
-2. 关闭会显示行号
-
-开启详细信息：
-```
-[CNPack\kubejs\assets\ftbquest\lang\zh_cn.json] SyntaxError: Invalid character '。' after '&' at line 2705
-    "不用末影龙，直接制造&6龙息&。",
-```
-
-关闭详细信息：
-
-```
-[CNPack\kubejs\assets\ftbquest\lang\zh_cn.json] SyntaxError: Invalid character after '&' at line 2705
-```
-
-注：无论选择什么，最终保存报错的文件永远为详细版本
+- 支持导出错误报告为txt
 - 支持检查单个或整个目录的json文件
-- 支持检查json本身格式问题。
+- 支持检查json本身格式问题
+- 错误会显示具体译文内容，出错位置和对应的键名
+
+效果预览：
+```
+[kubejs\assets\integrated_mc\lang\zh_cn.json] SyntaxError: Invalid character '里' after '&' at line 1
+    Value: 从附近的&b药水罐&里吸收&b药水&r以生产魔源。
+    Key: ftbquests.chapter.ars_nouveau.quest18.description1
+```
 
 # Paratranz译文同步工具
 

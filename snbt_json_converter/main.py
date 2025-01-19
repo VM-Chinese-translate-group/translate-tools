@@ -53,20 +53,6 @@ def convert_directory(directory_path: Path, to_json: bool) -> None:
 
 
 def main() -> None:
-    print(
-        Fore.LIGHTGREEN_EX
-        + "snbt json 互转工具 [版本 1.1 (2024)]\n作者：Wulian233（捂脸）\n\n"
-        + Fore.RESET
-        + """VM之禅：
-    一，即使翻译难易各异，译者应持己见自立。
-    二，即使遇到词句争议，组员勿必同心共力。
-    三，即使译途坏垣跌荡，仍应坚守质量保障。
-    四，即使成果乏人褒奖，仍不计事后短长。
-    五，即使面临质疑声涌，仍要对正道守望。
-    六，即使译句翻乱无章，仍应看向前方、重塑文章。
-        """
-    )
-
     path = input("请输入文件或目录路径：").strip()
     input_path = Path(path)
 
@@ -93,4 +79,17 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    print(
+        Fore.LIGHTGREEN_EX
+        + "snbt json 互转工具 [版本 1.2 (2025)]\n作者：Wulian233（捂脸）\n\n"
+        + Fore.RESET
+        + """VM之禅：
+    一，即使翻译难易各异，译者应持己见自立。
+    二，即使遇到词句争议，组员勿必同心共力。
+    三，即使译途坏垣跌荡，仍应坚守质量保障。
+    四，即使成果乏人褒奖，仍不计事后短长。
+    五，即使面临质疑声涌，仍要对正道守望。
+    六，即使译句翻乱无章，仍应看向前方、重塑文章。
+        """
+    )
     main()
