@@ -1,2 +1,3 @@
 sv-ttk
 aiohttp
+hidpi-tk

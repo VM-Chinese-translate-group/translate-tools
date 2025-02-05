@@ -15,6 +15,7 @@
 输入一个json文件路径或目录，会检查所有json文件内的颜色字符是否合法。
 
 - 支持彩色提示信息。报错为红色，通过为绿色
+- 支持排除各类转义符，精准检查到真正的错误
 - 支持导出错误报告为txt
 - 支持检查单个或整个目录的json文件
 - 支持检查json本身格式问题
@@ -22,9 +23,9 @@
 
 效果预览：
 ```
-[kubejs\assets\integrated_mc\lang\zh_cn.json] SyntaxError: Invalid character '里' after '&' at line 1
-    Value: 从附近的&b药水罐&里吸收&b药水&r以生产魔源。
-    Key: ftbquests.chapter.ars_nouveau.quest18.description1
+[zh_cn.json] SyntaxError: Invalid character '才' after '&'
+    Value: &6暗影之书：&r这本书必须在制作后&e放置在一个暗影书坛上&才能阅读。它包含有关&e魔法巫师&r模组的信息，如飞天扫帚和混合锅。
+    Key: ftbquests.chapter.pack_introduction.quest25.description2
 ```
 
 # Paratranz译文同步工具

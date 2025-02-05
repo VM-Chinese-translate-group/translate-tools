@@ -3,21 +3,22 @@ import json
 import os
 import re
 import sys
-from tkinter import END, Tk, filedialog, messagebox
+from tkinter import END, filedialog, messagebox
 from tkinter.ttk import Button, Checkbutton, Entry, Label, Progressbar
 
 import aiohttp
 import sv_ttk
+from hidpi_tk import DPIAwareTk
 
 
 class ParatranzUploader:
     CONFIG_FILE = "config.json"
     DEFAULT_TOKEN = "go to https://paratranz.cn/users/my"
-    DEFAULT_VERSION = "1.6.0"
+    DEFAULT_VERSION = "1.7.0"
 
-    def __init__(self, root: Tk) -> None:
+    def __init__(self, root: DPIAwareTk) -> None:
         self.root = root
-        self.root.title("Paratranz译文同步 - VM汉化组")
+        self.root.title("Paratranz译文同步")
         self.center_window()
 
         self.token = self.load_config()
@@ -61,18 +62,6 @@ class ParatranzUploader:
         )
 
     def create_widgets(self) -> None:
-        if sys.platform == "win32":
-            import ctypes
-
-            ctypes.windll.user32.SetProcessDPIAware()
-            try:
-                # >= win 8.1
-                ScaleFactor = ctypes.windll.shcore.GetScaleFactorForDevice(0)
-                self.root.call("tk", "scaling", ScaleFactor / 75)
-            except (ImportError, AttributeError, OSError, UnboundLocalError):
-                # <= win 8
-                pass
-
         entries = {
             "项目ID：": (0, self.create_entry),
             "文件ID：": (1, self.create_entry),
@@ -250,7 +239,7 @@ class ParatranzUploader:
         self.root.update()
 
     def update_info(self) -> None:
-        update_content = "1. 代码整理。\n2. 配置文件添加token获取引导。"
+        update_content = "1. 下载后的译文key排序顺序现在按原文件的顺序排序"
         self.update_label.config(text=f"更新内容：\n{update_content}")
 
 
@@ -263,7 +252,7 @@ def main() -> None:
         )
         sys.exit(0)
 
-    root = Tk()
+    root = DPIAwareTk()
     sv_ttk.use_light_theme()
     ParatranzUploader(root)
 
