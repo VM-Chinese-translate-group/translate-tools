@@ -1,23 +1,33 @@
 import json
 import os
 import re
+
 from colorama import Fore, init
 
 init(autoreset=True)
 
-def check_line_for_errors(
-    line: str, relative_file_path: str, key: str
-) -> list[str]:
+
+def check_line_for_errors(line: str, relative_file_path: str, key: str) -> list[str]:
     errors = []
-    # 排除以 &#92; 开头的转义字符和HTML实体
-    matches = re.finditer(r"&([^a-v0-9\s\\#])", line) 
-    for match in matches:
-        # 检查是否是转义字符（反斜杠后面跟的字符）
-        if match.start() > 0 and line[match.start() - 1] == "\\":
-            continue  # 如果是转义字符，跳过错误检查
-        error_message = f"SyntaxError{Fore.RESET}: {Fore.RED}Invalid character '{match.group(1)}' after '&'\n    {Fore.RESET}Value: {line.strip()}\n    Key: {Fore.YELLOW}{key}"
+    stripped_line = line.strip()
+
+    # 在 & 结尾时报错
+    if stripped_line.endswith("&"):
+        error_message = f"SyntaxError{Fore.RESET}: {Fore.RED}Invalid character '&' at the end of the line\n    {Fore.RESET}Value: {stripped_line}\n    Key: {Fore.YELLOW}{key}"
         print(f"[{relative_file_path}] {Fore.RED}{error_message}")
         errors.append(f"[{relative_file_path}] {Fore.RED}{error_message}")
+        return errors
+
+    # 检查 & 后是否有非法字符
+    matches = re.finditer(r"&([^a-v0-9\s\\#])", line)
+    for match in matches:
+        # 过滤掉反斜杠转义的情况
+        if match.start() > 0 and line[match.start() - 1] == "\\":
+            continue
+        error_message = f"SyntaxError{Fore.RESET}: {Fore.RED}Invalid character '{match.group(1)}' after '&'\n    {Fore.RESET}Value: {stripped_line}\n    Key: {Fore.YELLOW}{key}"
+        print(f"[{relative_file_path}] {Fore.RED}{error_message}")
+        errors.append(f"[{relative_file_path}] {Fore.RED}{error_message}")
+
     return errors
 
 
@@ -26,7 +36,7 @@ def check_json_file(file_path: str, relative_file_path: str) -> list[str]:
     try:
         with open(file_path, "r", encoding="utf-8-sig") as file:
             try:
-                json_data = json.load(file)  # 解析JSON数据
+                json_data = json.load(file)
             except json.JSONDecodeError as e:
                 error_message = f"JSONDecodeError: {e.msg} at line {e.lineno}"
                 print(f"[{relative_file_path}] {Fore.RED}{error_message}")
@@ -36,9 +46,7 @@ def check_json_file(file_path: str, relative_file_path: str) -> list[str]:
             for key, value in json_data.items():
                 for line in value.splitlines():
                     errors.extend(
-                        check_line_for_errors(
-                            line.strip(), relative_file_path, key
-                        )
+                        check_line_for_errors(line.strip(), relative_file_path, key)
                     )
     except Exception as e:
         error_message = f"无法打开文件：{relative_file_path}，错误：{e}"
@@ -89,8 +97,16 @@ def main() -> None:
 
     if errors:
         save_errors_to_file(errors)
+        if os.name == "nt":
+            import winsound
+
+            winsound.Beep(1000, 300)
     else:
         print(f"{Fore.GREEN}文件检查通过，没有发现错误。")
+        if os.name == "nt":
+            import winsound
+
+            winsound.PlaySound("*", winsound.SND_ALIAS)
 
     input("按任意键（关机键除外）退出...")
 
@@ -98,7 +114,7 @@ def main() -> None:
 if __name__ == "__main__":
     print(
         Fore.LIGHTGREEN_EX
-        + "FTB任务颜色字符合法检查 [版本 1.5 (2025)]\n作者：Wulian233（捂脸）\n\n"
+        + "FTB任务颜色字符合法检查 [版本 1.6 (2025)]\n作者：Wulian233（捂脸）\n\n"
         + Fore.RESET
         + """VM之禅：
     一，即使翻译难易各异，译者应持己见自立。
