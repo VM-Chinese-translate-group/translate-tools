@@ -8,7 +8,7 @@ init(autoreset=True)
 
 
 def check_line_for_errors(line: str, relative_file_path: str, key: str) -> list[str]:
-    errors = []
+    errors: list[str] = []
     stripped_line = line.strip()
 
     # 在 & 结尾时报错
@@ -32,9 +32,9 @@ def check_line_for_errors(line: str, relative_file_path: str, key: str) -> list[
 
 
 def check_json_file(file_path: str, relative_file_path: str) -> list[str]:
-    errors = []
+    errors: list[str] = []
     try:
-        with open(file_path, "r", encoding="utf-8-sig") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             try:
                 json_data = json.load(file)
             except json.JSONDecodeError as e:
@@ -56,9 +56,12 @@ def check_json_file(file_path: str, relative_file_path: str) -> list[str]:
 
 
 def check_directory(directory_path: str) -> list[str]:
-    errors = []
+    errors: list[str] = []
     found_json = False
     for root, _, files in os.walk(directory_path):
+        # 跳过 patchouli_books 文件夹，格式不同
+        if "patchouli_books" in root.split(os.sep):
+            continue
         json_files = [f for f in files if f.endswith(".json")]
         found_json = found_json or bool(json_files)
         for file_name in json_files:
@@ -114,7 +117,7 @@ def main() -> None:
 if __name__ == "__main__":
     print(
         Fore.LIGHTGREEN_EX
-        + "FTB任务颜色字符合法检查 [版本 1.6 (2025)]\n作者：Wulian233（捂脸）\n\n"
+        + "FTB任务颜色字符合法检查 [版本 1.7 (2025)]\n作者：Wulian233（捂脸）\n\n"
         + Fore.RESET
         + """VM之禅：
     一，即使翻译难易各异，译者应持己见自立。

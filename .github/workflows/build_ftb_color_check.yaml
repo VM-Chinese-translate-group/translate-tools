@@ -7,33 +7,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-          
-      - name: Install dependencies (Windows)
-        run: |
-          pip install pyinstaller
-          pip install -r ftbq_color_check/requirements.txt
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        include:
+          - os: windows-latest
+            artifact_name: FTBQ-Color-Check-Windows
+            extension: .exe
+          - os: macos-latest
+            artifact_name: FTBQ-Color-Check-macOS
+            extension: 
+          - os: ubuntu-latest
+            artifact_name: FTBQ-Color-Check-Linux
+            extension: 
 
-      - name: Build with PyInstaller (Windows)
-        run: |
-          python -m PyInstaller -F -n FTBQ-Color-Check-Windows ftbq_color_check/main.py
-
-      - name: Upload (Windows)
-        uses: actions/upload-artifact@v4
-        with:
-          path: dist/FTBQ-Color-Check-Windows.exe
-
-  build-macos:
-    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,43 +32,17 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Install dependencies (macOS)
-        run: |
-          pip install pyinstaller
-          pip install -r ftbq_color_check/requirements.txt
-        
-      - name: Build with PyInstaller (macOS)
-        run: |
-          python -m PyInstaller -F -n FTBQ-Color-Check-macOS ftbq_color_check/main.py
-
-      - name: Upload (macOS)
-        uses: actions/upload-artifact@v4
-        with:
-          name: FTBQ-Color-Check-macOS
-          path: dist/FTBQ-Color-Check-macOS
-
-  build-linux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-          
-      - name: Install dependencies (Linux)
+      - name: Install dependencies
         run: |
           pip install pyinstaller
           pip install -r ftbq_color_check/requirements.txt
 
-      - name: Build with PyInstaller (Linux)
+      - name: Build with PyInstaller
         run: |
-          python -m PyInstaller -F -n FTBQ-Color-Check-Linux ftbq_color_check/main.py
+          python -m PyInstaller -F -n ${{ matrix.artifact_name }} ftbq_color_check/main.py
 
-      - name: Upload (Linux)
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: FTBQ-Color-Check-Linux
-          path: dist/FTBQ-Color-Check-Linux
+          name: ${{ matrix.artifact_name }}
+          path: dist/${{ matrix.artifact_name }}${{ matrix.extension }}
