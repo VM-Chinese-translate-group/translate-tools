@@ -8,24 +8,27 @@
 
 所有工具均完全免费且开源，一切为了社区发展。
 
-# FTBQ 颜色字符检查
+# FTB任务颜色字符合法检查
 
-用于检查翻译后的语言文件中是否存在FTB任务&颜色字符后面的数字或字母丢失的问题。这会导致任务无法正常显示。
+用于检查翻译后的语言文件中是否存在FTB任务`&`颜色字符后面的数字或字母丢失的问题。这会导致任务无法正常显示。
 
-输入一个json文件路径或目录，会检查所有json文件内的颜色字符是否合法。
+可以选择一个json文件路径或目录，会检查所有json文件内的颜色字符是否合法。
 
-- 支持彩色提示信息。报错为红色，通过为绿色
+![](/ftbq_color_check/preview.png)
+
+- 支持彩色日志信息。错误信息为红色，键名为青色，文件名为蓝色，通过检查为绿色。
 - 支持排除各类转义符，精准检查到真正的错误
-- 支持导出错误报告为txt
+- 支持导出错误报告为html网页，支持暗色模式
 - 支持检查单个或整个目录的json文件
 - 支持检查json本身格式问题
-- 错误会显示具体译文内容，出错位置和对应的键名
+- 检查错误后会显示具体译文内容，出错位置和对应的键名
 
 效果预览：
 ```
-[zh_cn.json] SyntaxError: Invalid character '才' after '&'
-    Value: &6暗影之书：&r这本书必须在制作后&e放置在一个暗影书坛上&才能阅读。它包含有关&e魔法巫师&r模组的信息，如飞天扫帚和混合锅。
-    Key: ftbquests.chapter.pack_introduction.quest25.description2
+文件: C:\Users\Administrator\Downloads\CNPack\kubejs\assets\integrateddynamics\lang\zh_cn.json
+键: info_book.integrateddynamics.tutorials.theValueOfOperators.text4
+值: &2运算符&0有很多其他的操作，例如&谓词&r合取，翻转&2运算符&0参数，以及关于&7列表&0的更多操作……
+错误: '&'后包含非法字符 '谓'
 ```
 
 # Paratranz译文同步工具

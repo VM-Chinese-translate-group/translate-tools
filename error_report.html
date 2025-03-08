@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>错误报告</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f5f5f5; text-align: center; }
+        table { margin: 20px auto; border-collapse: collapse; background: #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); table-layout: auto; }
+        th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        .error { color: red; font-weight: bold; }
+        .highlight { color: red; font-weight: bold; background-color: #ffddcc; }
+        table tr { transition: background-color 0.3s ease, transform 0.2s ease; }
+        table tr:hover { background-color: #f1f1f1; }
+
+        th:nth-child(1), td:nth-child(1) { min-width: 100px; max-width: 200px; word-wrap: break-word; resize: horizontal; }
+        th:nth-child(2), td:nth-child(2) { min-width: 200px; max-width: 300px; word-wrap: break-word; resize: horizontal; }
+        th:nth-child(3), td:nth-child(3) { min-width: 300px; max-width: 600px; word-wrap: break-word; resize: horizontal; }
+        th:nth-child(4), td:nth-child(4) { word-wrap: break-word; }
+
+        @media (prefers-color-scheme: dark) {
+            body { background-color: #333333; color: #f0f0f0; }
+            table { background: #444444; box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); }
+            th { background-color: #0056b3; color: #f5f5f5; }
+            .highlight { background-color: #992222; color: #f5f5f5; }
+            .error { color: #ff6666; }
+            table tr:hover { background-color: #555555; }
+        }
+    </style>
+</head>
+<body>
+    <h1>错误报告</h1>
+    <table>
+        <thead>
+            <tr><th>文件路径</th><th>键</th><th>值</th><th>错误描述</th></tr>
+        </thead>
+        <tbody>
+    <tr><td>C:\Users\Administrator\Downloads\CNPack\kubejs\assets\pneumaticcraft\lang\zh_cn.json</td><td>item.pneumaticcraft.assembly_program_drill_laser</td><td>装配程序：钻头&<span class="highlight">激</span>光</td><td class='error'>'&'后包含非法字符 '激'</td></tr>
+<tr><td>C:\Users\Administrator\Downloads\CNPack\kubejs\assets\integratedterminals\lang\zh_cn.json</td><td>info_book.integratedterminals.storage_terminal.usage.text1</td><td>&l存储终端&r中含有目前连接的网络中所有激活的&o存储网络&r的标签页，可根据需要用频道将它们分开。例如，如果你有一些连接至网络的&o能量单元&r，那么你会在能量标签页里看到所有能量的总和。如果安装了其他带有储存功能的模组，例如可存储&o物品&r和&o流体&r的&l联合管道&r，你也可以在存储终端中与它们交互。每个标签的底部都显示了总和与最大数量。在本书剩余的部分，我们将会谈到哪些&o东西&r是能够作为&<span class="highlight">原</span>料&r被存储（如物品、流体和能量）。</td><td class='error'>'&'后包含非法字符 '原'</td></tr>
+<tr><td>C:\Users\Administrator\Downloads\CNPack\kubejs\assets\integratedterminals\lang\zh_cn.json</td><td>info_book.integratedterminals.tutorials.introduction.text1</td><td>本节包含几个教程，可帮助你学习和了解&l联合终端&r，一个用于管理和总览&l动态联合&r网络的&l动态联合&<span class="highlight">附</span>加。</td><td class='error'>'&'后包含非法字符 '附'</td></tr>
+<tr><td>C:\Users\Administrator\Downloads\CNPack\kubejs\assets\integratedterminals\lang\zh_cn.json</td><td>info_book.integratedterminals.tutorials.storage_terminal_filtering.text3</td><td>本教程的第二部分，我们将通过使用&l储存终端&r界面中右下角的&l变量卡&r栏位进行基于变量的过滤。你可以插入&l变量卡&r，其中包含了在&l动态联合逻辑编程器&r中配置的某个&l谓词&r，该&l谓词&r将原料类型作为输入，并将&9布尔型&0作为输出，用于指示是否显示给定的原料。本教程中，让我们尝试过滤所有&o可附魔&<span class="highlight">物</span>品。为此，打开&l逻辑编程器&r，选择&l谓词&r类型，搜索&o“Enchantable”&<span class="highlight">R</span>谓词，并将其写入&l变量卡&<span class="highlight">R</span>中。在这之后，在选中物品标签页时，将你的&l变量卡&r插入&l存储终端&r中的其中一个&l变量卡&r栏位。</td><td class='error'>'&'后包含非法字符 '物'</td></tr>
+<tr><td>C:\Users\Administrator\Downloads\CNPack\kubejs\assets\integratedterminals\lang\zh_cn.json</td><td>info_book.integratedterminals.tutorials.storage_terminal_filtering.text3</td><td>本教程的第二部分，我们将通过使用&l储存终端&r界面中右下角的&l变量卡&r栏位进行基于变量的过滤。你可以插入&l变量卡&r，其中包含了在&l动态联合逻辑编程器&r中配置的某个&l谓词&r，该&l谓词&r将原料类型作为输入，并将&9布尔型&0作为输出，用于指示是否显示给定的原料。本教程中，让我们尝试过滤所有&o可附魔&<span class="highlight">物</span>品。为此，打开&l逻辑编程器&r，选择&l谓词&r类型，搜索&o“Enchantable”&<span class="highlight">R</span>谓词，并将其写入&l变量卡&<span class="highlight">R</span>中。在这之后，在选中物品标签页时，将你的&l变量卡&r插入&l存储终端&r中的其中一个&l变量卡&r栏位。</td><td class='error'>'&'后包含非法字符 'R'</td></tr>
+<tr><td>C:\Users\Administrator\Downloads\CNPack\kubejs\assets\integratedterminals\lang\zh_cn.json</td><td>info_book.integratedterminals.tutorials.storage_terminal_filtering.text3</td><td>本教程的第二部分，我们将通过使用&l储存终端&r界面中右下角的&l变量卡&r栏位进行基于变量的过滤。你可以插入&l变量卡&r，其中包含了在&l动态联合逻辑编程器&r中配置的某个&l谓词&r，该&l谓词&r将原料类型作为输入，并将&9布尔型&0作为输出，用于指示是否显示给定的原料。本教程中，让我们尝试过滤所有&o可附魔&<span class="highlight">物</span>品。为此，打开&l逻辑编程器&r，选择&l谓词&r类型，搜索&o“Enchantable”&<span class="highlight">R</span>谓词，并将其写入&l变量卡&<span class="highlight">R</span>中。在这之后，在选中物品标签页时，将你的&l变量卡&r插入&l存储终端&r中的其中一个&l变量卡&r栏位。</td><td class='error'>'&'后包含非法字符 'R'</td></tr>
+<tr><td>C:\Users\Administrator\Downloads\CNPack\kubejs\assets\integrateddynamics\lang\zh_cn.json</td><td>info_book.integrateddynamics.manual.logic.advanced.nbt_path.text1</td><td>当你一头扎进复杂的NBT标签中后，你会发现，你是如此地需要一个复杂运算符，让它帮你读取出那些深层嵌套的NBT值。为了简化这一繁杂工作，你可以使用&<span class="highlight">字</span>符串&0基础的&lNBT路径表达式&r来写出你想要的&3NBT&0标签中的路径。</td><td class='error'>'&'后包含非法字符 '字'</td></tr>
+<tr><td>C:\Users\Administrator\Downloads\CNPack\kubejs\assets\integrateddynamics\lang\zh_cn.json</td><td>info_book.integrateddynamics.tutorials.theValueOfOperators.text4</td><td>&2运算符&0有很多其他的操作，例如&<span class="highlight">谓</span>词&r合取，翻转&2运算符&0参数，以及关于&7列表&0的更多操作……</td><td class='error'>'&'后包含非法字符 '谓'</td></tr>
+</tbody>
+    </table>
+</body>
+</html>
