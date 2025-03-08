@@ -62,7 +62,7 @@ FTBQ颜色字符检查：
 ```bash
     pip install pyinstaller
     pip install -r ftbq_color_check/requirements.txt
-    python -m PyInstaller -F -n FTBQ-Color-Check ftbq_color_check/main.py
+    python -m PyInstaller -F -w -n FTBQ-Color-Check ftbq_color_check/main.py
 ```
 
 Paratranz译文同步工具：

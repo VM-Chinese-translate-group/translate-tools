@@ -39,7 +39,7 @@ jobs:
 
       - name: Build with PyInstaller
         run: |
-          python -m PyInstaller -F -n ${{ matrix.artifact_name }} ftbq_color_check/main.py
+          python -m PyInstaller -F -w -n ${{ matrix.artifact_name }} ftbq_color_check/main.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
