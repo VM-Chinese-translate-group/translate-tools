@@ -1,9 +1,19 @@
-**/__pycache__
-**/.idea
-**/.vscode
-**/build
-**/dist
-**/*.json
-**/error_report.txt
-**/*.exe
-/*.spec
+# Jetbrains
+.idea
+
+# MacOS Desktop Services Store
+.DS_Store
+.AppleDouble
+.LSOverride
+
+*.zip
+
+# Python
+__pycache__
+build
+dist
+
+config.json
+error_report.html
+paratranz_config.json
+

@@ -1,0 +1,7 @@
+[project]
+name = "translate-tools"
+version = "2.1.0"
+description = "VM汉化组自研翻译辅助工具，包含Paratranz译文批量上传下载GUI程序、FTBQ颜色字符合法检查、snbt json互转工具等"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["aiohttp", "colorama", "hidpi-tk", "snbtlib", "sv-ttk"]

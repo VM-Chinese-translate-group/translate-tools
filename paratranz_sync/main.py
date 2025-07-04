@@ -54,9 +54,10 @@ class ParatranzUploader:
             self.root.winfo_screenwidth(),
             self.root.winfo_screenheight(),
         )
-        position_top, position_right = (screen_height - window_height) // 2, (
-            screen_width - window_width
-        ) // 2
+        position_top, position_right = (
+            (screen_height - window_height) // 2,
+            (screen_width - window_width) // 2,
+        )
         self.root.geometry(
             f"{window_width}x{window_height}+{position_right}+{position_top}"
         )
