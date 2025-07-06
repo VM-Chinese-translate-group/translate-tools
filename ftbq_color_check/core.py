@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import re
+import html
 import sys
 from collections.abc import Generator
 from dataclasses import dataclass
@@ -102,7 +103,6 @@ def generate_html_report(
         th:nth-child(3), td:nth-child(3) {{ min-width: 200px; max-width: 400px; }}
         th:nth-child(4), td:nth-child(4) {{ min-width: 150px; }}
 
-
         @media (prefers-color-scheme: dark) {{
             body {{ background-color: #333333; color: #f0f0f0; }}
             h1 {{ color: #eee; }}
@@ -124,23 +124,40 @@ def generate_html_report(
         <tbody>
     """
 
+    def highlight(value: str, error_message: str) -> str:
+        result = []
+        i = 0
+        length = len(value)
+
+        while i < length:
+            if value[i] == "&":
+                if i + 1 < length:
+                    ch = value[i + 1]
+                    if not re.match(r"[a-v0-9\s\\#]", ch):
+                        # 是非法字符
+                        result.append("&<span class='highlight'>")
+                        result.append(html.escape(ch))
+                        result.append("</span>")
+                        i += 2  # 跳过这个非法字符
+                        continue
+            result.append(html.escape(value[i]))
+            i += 1
+
+        if error_message == "行尾包含非法字符 '&'" and value.endswith("&"):
+            result[-1] = "<span class='highlight'>&</span>"
+
+        return "".join(result)
+
     for error in errors:
-        import html
-
-        escaped_value = html.escape(error.value)
-
-        highlighted_value = re.sub(
-            r"&([^a-v0-9\s\\#])", r'&<span class="highlight">\1</span>', escaped_value
+        highlighted_value = highlight(error.value, error.error_message)
+        html_content += (
+            f"<tr>"
+            f"<td>{html.escape(error.file_path)}</td>"
+            f"<td>{html.escape(error.key)}</td>"
+            f"<td>{highlighted_value}</td>"
+            f"<td class='error'>{html.escape(error.error_message)}</td>"
+            f"</tr>\n"
         )
-
-        if error.error_message == "行尾包含非法字符 '&'" and escaped_value.endswith(
-            "&"
-        ):
-            highlighted_value = (
-                highlighted_value[:-1] + '<span class="highlight">&</span>'
-            )
-
-        html_content += f"<tr><td>{html.escape(error.file_path)}</td><td>{html.escape(error.key)}</td><td>{highlighted_value}</td><td class='error'>{html.escape(error.error_message)}</td></tr>\n"
 
     html_content += """</tbody>
     </table>
