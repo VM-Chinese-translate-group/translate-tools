@@ -5,7 +5,7 @@ from tkinter.scrolledtext import ScrolledText
 
 from core import check_directory, check_json, generate_html_report
 
-__version__ = "2.1"
+__version__ = "2.2"
 __author__ = "Wulian233（捂脸）"
 
 

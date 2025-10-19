@@ -7,7 +7,6 @@ import sys
 from collections.abc import Generator
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Union
 
 
 @dataclass
@@ -21,7 +20,7 @@ class ErrorRecord:
 def check_line_for_errors(
     line: str, file_path: str, key: str
 ) -> Generator[ErrorRecord, None, None]:
-    pattern = re.compile(r"&([^a-v0-9\s\\#])")
+    pattern = re.compile(r"&([^a-vz0-9\s\\#])")
 
     for match in pattern.finditer(line):
         if match.start() > 0 and line[match.start() - 1] == "\\":
@@ -40,7 +39,7 @@ def check_json(file_path: str) -> Generator[ErrorRecord, None, None]:
         with open(file_path, "r", encoding="utf-8") as file:
             json_data = json.load(file)
 
-        def process_value(value: Union[str, list, dict], parent_key: str = ""):
+        def process_value(value: str | list | dict, parent_key: str = ""):
             if isinstance(value, str):
                 for i, line in enumerate(value.split("\n")):
                     line_key = (
@@ -133,7 +132,7 @@ def generate_html_report(
             if value[i] == "&":
                 if i + 1 < length:
                     ch = value[i + 1]
-                    if not re.match(r"[a-v0-9\s\\#]", ch):
+                    if not re.match(r"[a-vz0-9\s\\#]", ch):
                         # 是非法字符
                         result.append("&<span class='highlight'>")
                         result.append(html.escape(ch))
